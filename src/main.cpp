@@ -1,16 +1,15 @@
 
 #include "MessageStore.h"
+#include "CLI.h"
+#include <iostream>
+
+using namespace std;
 
 int main(int, const char* [])
 {
-	
-	MessageStore store;
-	
-	while (store.ProcessInput() == false){
-	
-	}
-	
-	store.terminate();
-	
+  MessageStore mStore;
+  CLI cli(mStore);
+  cli.run();
+
 	return 0;
 }

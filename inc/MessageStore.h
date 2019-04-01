@@ -1,25 +1,24 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <unordered_map>
 
-#include <iostream>
+struct Message {
+  std::string from;
+  std::string to;
+  std::string text;
+};
 
-using namespace std;
+typedef std::unordered_map<std::string, std::vector<const Message>> messageStore;
 
 class MessageStore
 {
 public:
-	
-	bool ProcessInput(); // returns true when finished
-	void terminate();
-private:
+	void addUser(const std::string& user);
+  bool isUser(const std::string& user);
+	void sendMessage(const Message& msg);
+  const std::vector<const Message>& getMessages(const std::string& user);
 
-	bool Exists(std::string u);
-	std::vector<std::string> users;
-	struct Message {
-		std::string from;
-		std::string to;
-		std::string msg;
-	};
-	std::vector<Message*> messages;
+private:
+	messageStore messages;
 };
